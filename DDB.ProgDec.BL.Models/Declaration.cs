@@ -8,5 +8,9 @@ namespace DDB.ProgDec.BL.Models
 {
     internal class Declaration
     {
+        public int Id { get; set; }
+        public int StudentId { get; set; }
+        public int ProgramId { get; set; }
+        public DateTime ChangeDate { get; set; }
     }
 }
