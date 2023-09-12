@@ -1,0 +1,12 @@
+tool>Nuget Package manager > Package Manager Console
+
+install-package "one of those below"
+
+microsoft.entityframeworkcore.sqlServer
+microsoft.entityframeworkcore.Tools
+Microsoft.VisualStudio.Web.CodeGeneration.Design
+
+build it by copy all this scaffold below, but all one line.
+
+Scaffold-DbContext "Server=(localdb)\MSSQLLocalDB;Database=DDB.ProgDec.DB;Integrated Security=True" 
+Microsoft.EntityFrameworkCore.SqlServer -Context ProgDecEntities -UseDatabaseNames -force
