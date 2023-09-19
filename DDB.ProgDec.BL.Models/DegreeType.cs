@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DDB.ProgDec.BL.Models
 {
-    internal class DegreeType
+    public class DegreeType
     {
         public int Id { get; set; }
         public string? Description { get; set; }
