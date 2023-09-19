@@ -70,5 +70,13 @@ namespace DDB.ProgDec.PL.Test
             int result = dc.SaveChanges();
             Assert.AreNotEqual(result, 0);
         }
+
+        [TestMethod]
+        public void LoadByIdTest()
+        {
+            tblProgram entity = dc.tblPrograms.Where(e => e.Id == 2).FirstOrDefault();
+
+            Assert.AreEqual(entity.Id, 2);
+        }
     }
 }
