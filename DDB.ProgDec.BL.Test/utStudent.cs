@@ -33,5 +33,29 @@ namespace DDB.ProgDec.BL.Test
                 Assert.AreEqual(1, results);
             }
         }
+
+        [TestMethod]
+        public void UpdateTest()
+        {
+            {
+                Student student = StudentManager.LoadByID(3);
+                student.FirstName = "test"; // need to physically change a value.
+                                            // "updating" to the same values, does not change a row of data"
+                                            // so it returns 0 still.
+
+                int results = StudentManager.Update(student, true);
+                Assert.AreEqual(1, results);
+            }
+        }
+
+        [TestMethod]
+        public void DeleteTest()
+        {
+            {
+
+                int results = StudentManager.Delete(3, true);
+                Assert.AreEqual(1, results);
+            }
+        }
     }
 }
