@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DDB.ProgDec.BL.Models;
+﻿using DDB.ProgDec.BL.Models;
 using DDB.ProgDec.PL;
 using Microsoft.EntityFrameworkCore.Storage;
-using NuGet.ContentModel;
 
 namespace DDB.ProgDec.BL
 {
