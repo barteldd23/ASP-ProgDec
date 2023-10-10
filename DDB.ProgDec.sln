@@ -20,7 +20,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDB.ProgDec.BL", "DDB.ProgD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDB.ProgDec.BL.Test", "DDB.ProgDec.BL.Test\DDB.ProgDec.BL.Test.csproj", "{C6B2E743-8F4D-496B-8E9D-085C7E8D43E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDB.Bands.UI", "DDB.Bands.UI\DDB.Bands.UI.csproj", "{CD1A7F60-C38C-4BA2-832C-0A4AED695EA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDB.Bands.UI", "DDB.Bands.UI\DDB.Bands.UI.csproj", "{CD1A7F60-C38C-4BA2-832C-0A4AED695EA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDB.ProgDec.UI", "DDB.ProgDec.UI\DDB.ProgDec.UI.csproj", "{FC88B1C4-FC03-496E-BC2B-51416C8D4F0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,6 +60,10 @@ Global
 		{CD1A7F60-C38C-4BA2-832C-0A4AED695EA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD1A7F60-C38C-4BA2-832C-0A4AED695EA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD1A7F60-C38C-4BA2-832C-0A4AED695EA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC88B1C4-FC03-496E-BC2B-51416C8D4F0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC88B1C4-FC03-496E-BC2B-51416C8D4F0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC88B1C4-FC03-496E-BC2B-51416C8D4F0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC88B1C4-FC03-496E-BC2B-51416C8D4F0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
