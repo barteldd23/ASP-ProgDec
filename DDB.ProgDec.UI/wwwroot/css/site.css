@@ -20,3 +20,14 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.bg-dark {
+    background: linear-gradient(90deg,#258cfb 0%, rgb(157, 65, 0) 35%);
+}
+
+.card-img {
+    height: 200px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
