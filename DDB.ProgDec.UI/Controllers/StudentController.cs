@@ -2,16 +2,16 @@
 
 namespace DDB.ProgDec.UI.Controllers
 {
-    public class DegreeTypeController : Controller
+    public class StudentController : Controller
     {
         public IActionResult Index()
         {
-            return View(DegreeTypeManager.Load());
+            return View(StudentManager.Load());
         }
 
         public IActionResult Details(int id)
         {
-            return View(DegreeTypeManager.LoadByID(id));
+            return View(StudentManager.LoadByID(id));
         }
 
         public IActionResult Create()
@@ -20,11 +20,11 @@ namespace DDB.ProgDec.UI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(DegreeType degreeType, bool rollback = false)
+        public IActionResult Create(Student student, bool rollback = false)
         {
             try
             {
-                int result = DegreeTypeManager.Insert(degreeType, rollback);
+                int result = StudentManager.Insert(student, rollback);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -37,43 +37,43 @@ namespace DDB.ProgDec.UI.Controllers
 
         public IActionResult Edit(int id)
         {
-            return View(DegreeTypeManager.LoadByID(id));
+            return View(StudentManager.LoadByID(id));
         }
 
         [HttpPost]
-        public IActionResult Edit(DegreeType degreeType, bool rollback = false)
+        public IActionResult Edit(Student student, bool rollback = false)
         {
             try
             {
-                int result = DegreeTypeManager.Update(degreeType, rollback);
+                int result = StudentManager.Update(student, rollback);
 
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
-                return View(degreeType);
+                return View(student);
             }
         }
 
         public IActionResult Delete(int id)
         {
-            return View(DegreeTypeManager.LoadByID(id));
+            return View(StudentManager.LoadByID(id));
         }
 
         [HttpPost]
-        public IActionResult Delete(int id, DegreeType degreeType, bool rollback = false)
+        public IActionResult Delete(int id, Student student, bool rollback = false)
         {
             try
             {
-                int result = DegreeTypeManager.Delete(id, rollback);
+                int result = StudentManager.Delete(id, rollback);
 
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
-                return View(degreeType);
+                return View(student);
             }
         }
     }

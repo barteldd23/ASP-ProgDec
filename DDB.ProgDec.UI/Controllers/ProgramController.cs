@@ -2,16 +2,16 @@
 
 namespace DDB.ProgDec.UI.Controllers
 {
-    public class DegreeTypeController : Controller
+    public class ProgramController : Controller
     {
         public IActionResult Index()
         {
-            return View(DegreeTypeManager.Load());
+            return View(ProgramManager.Load());
         }
 
         public IActionResult Details(int id)
         {
-            return View(DegreeTypeManager.LoadByID(id));
+            return View(ProgramManager.LoadByID(id));
         }
 
         public IActionResult Create()
@@ -20,11 +20,11 @@ namespace DDB.ProgDec.UI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(DegreeType degreeType, bool rollback = false)
+        public IActionResult Create(BL.Models.Program program, bool rollback = false)
         {
             try
             {
-                int result = DegreeTypeManager.Insert(degreeType, rollback);
+                int result = ProgramManager.Insert(program, rollback);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -37,43 +37,43 @@ namespace DDB.ProgDec.UI.Controllers
 
         public IActionResult Edit(int id)
         {
-            return View(DegreeTypeManager.LoadByID(id));
+            return View(ProgramManager.LoadByID(id));
         }
 
         [HttpPost]
-        public IActionResult Edit(DegreeType degreeType, bool rollback = false)
+        public IActionResult Edit(BL.Models.Program program, bool rollback = false)
         {
             try
             {
-                int result = DegreeTypeManager.Update(degreeType, rollback);
+                int result = ProgramManager.Update(program, rollback);
 
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
-                return View(degreeType);
+                return View(program);
             }
         }
 
         public IActionResult Delete(int id)
         {
-            return View(DegreeTypeManager.LoadByID(id));
+            return View(ProgramManager.LoadByID(id));
         }
 
         [HttpPost]
-        public IActionResult Delete(int id, DegreeType degreeType, bool rollback = false)
+        public IActionResult Delete(int id, BL.Models.Program program, bool rollback = false)
         {
             try
             {
-                int result = DegreeTypeManager.Delete(id, rollback);
+                int result = ProgramManager.Delete(id, rollback);
 
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
-                return View(degreeType);
+                return View(program);
             }
         }
     }
