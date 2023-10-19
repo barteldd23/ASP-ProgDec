@@ -31,3 +31,41 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.header {
+    margin: 0px;
+    padding: 0px;
+    background-color: #258cfb
+}
+
+.header h1, .header h2, .header h3, .header h4, .header h5{
+    margin: 0px;
+    padding: 0px;
+    color: white;
+    font-family: 'Trebuchet MS','Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+} 
+
+.main{
+    margin: 0px;
+    padding: 0px;
+    border-width: 1px;
+    border-style: solid;
+
+}
+
+.sidebar {
+    margin: 0px 10px 0px 10px;
+    min-height: 500px;
+    border-width: 1px;
+    border-style: solid;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.sidebar ul{
+    list-style-type: none;
+    padding-left: 5px;
+    padding-right: 0px;
+
+}

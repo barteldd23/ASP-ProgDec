@@ -187,7 +187,7 @@ namespace DDB.ProgDec.BL
             }
         }
 
-        public static List<Declaration> Load()
+        public static List<Declaration> Load(int? programId=null)
         {
             try
             {
@@ -199,6 +199,7 @@ namespace DDB.ProgDec.BL
                      join s in dc.tblStudents on d.StudentId equals s.Id
                      join p in dc.tblPrograms on d.ProgramId equals p.Id
                      join dt in dc.tblDegreeTypes on p.DegreeTypeId equals dt.Id
+                     where d.ProgramId == programId || programId == null
                      select new
                      {
                          d.Id,
