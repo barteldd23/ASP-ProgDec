@@ -150,14 +150,24 @@ namespace DDB.ProgDec.BL
             }
         }
 
-        public static Program LoadByID(int id)
+        public static BL.Models.Program LoadByID(int id)
         {
             try
             {
 
                 using (ProgDecEntities dc = new ProgDecEntities())
                 {
-                    tblProgram entity = dc.tblPrograms.FirstOrDefault(program => program.Id == id);
+                    var entity = (from s in dc.tblPrograms
+                                 join dt in dc.tblDegreeTypes on s.DegreeTypeId equals dt.Id
+                                 where s.Id == id
+                                 select new
+                                 {
+                                     s.Id,
+                                     s.Description,
+                                     s.DegreeTypeId,
+                                     DegreeTypeName = dt.Description
+                                 })
+                                 .FirstOrDefault();
 
                     if (entity != null)
                     {
@@ -165,7 +175,8 @@ namespace DDB.ProgDec.BL
                         {
                             Id = entity.Id,
                             Description = entity.Description,
-                            DegreeTypeId = entity.DegreeTypeId
+                            DegreeTypeId = entity.DegreeTypeId,
+                            DegreeTypeName = entity.DegreeTypeName
                         };
                     }
                     else
@@ -192,18 +203,21 @@ namespace DDB.ProgDec.BL
                 using (ProgDecEntities dc = new ProgDecEntities())
                 {
                     (from s in dc.tblPrograms
+                     join dt in dc.tblDegreeTypes on s.DegreeTypeId equals dt.Id
                      select new
                      {
                          s.Id,
                          s.Description,
-                         s.DegreeTypeId
+                         s.DegreeTypeId,
+                         DegreeTypeName = dt.Description
                      })
                      .ToList()
                      .ForEach(program => list.Add(new Program
                      {
                          Id = program.Id,
                          Description = program.Description,
-                         DegreeTypeId = program.DegreeTypeId
+                         DegreeTypeId = program.DegreeTypeId,
+                         DegreeTypeName = program.DegreeTypeName
 
                      }));
                 }

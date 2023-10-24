@@ -9,6 +9,12 @@ namespace DDB.ProgDec.UI.Controllers
             return View(DeclarationManager.Load());
         }
 
+        // filter the declaration by programId
+        public IActionResult Browse(int id)
+        {
+            return View(nameof(Index),DeclarationManager.Load(id));
+        }
+
         public IActionResult Details(int id)
         {
             return View(DeclarationManager.LoadByID(id));

@@ -6,16 +6,20 @@ namespace DDB.ProgDec.UI.Controllers
     {
         public IActionResult Index()
         {
+            ViewBag.Title = "List of All Programs";
             return View(ProgramManager.Load());
         }
 
         public IActionResult Details(int id)
         {
-            return View(ProgramManager.LoadByID(id));
+            var item = ProgramManager.LoadByID(id);
+            ViewBag.Title = "Details for " + item.Description;
+            return View(item);
         }
 
         public IActionResult Create()
         {
+            ViewBag.Title = "Create a Progarm";
             return View();
         }
 
@@ -37,7 +41,9 @@ namespace DDB.ProgDec.UI.Controllers
 
         public IActionResult Edit(int id)
         {
-            return View(ProgramManager.LoadByID(id));
+            var item = ProgramManager.LoadByID(id);
+            ViewBag.Title = "Edit " + item.Description;
+            return View(item);
         }
 
         [HttpPost]
@@ -58,7 +64,9 @@ namespace DDB.ProgDec.UI.Controllers
 
         public IActionResult Delete(int id)
         {
-            return View(ProgramManager.LoadByID(id));
+            var item = ProgramManager.LoadByID(id);
+            ViewBag.Title = "Delete";
+            return View(item);
         }
 
         [HttpPost]

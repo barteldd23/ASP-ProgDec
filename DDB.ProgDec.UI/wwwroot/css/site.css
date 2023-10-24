@@ -69,3 +69,7 @@ body {
     padding-right: 0px;
 
 }
+
+.table tr:nth-child(even){
+    background-color: lightblue;
+}
