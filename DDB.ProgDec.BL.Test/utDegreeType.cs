@@ -6,7 +6,17 @@ namespace DDB.ProgDec.BL.Test
         [TestMethod]
         public void LoadTest()
         {
-            Assert.AreEqual(3, DegreeTypeManager.Load().Count);
+            List<DegreeType> items = DegreeTypeManager.Load();
+            Assert.AreEqual(3, items.Count);
+            Assert.AreEqual(9, items[2].Programs.Count);
+        }
+
+        [TestMethod]
+        public void LoadByIdTest()
+        {
+            var item = DegreeTypeManager.LoadByID(1);
+            Assert.AreEqual(1, item.Id);
+            Assert.AreEqual(5, item.Programs.Count);
         }
 
         [TestMethod]

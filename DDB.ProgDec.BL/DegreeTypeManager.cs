@@ -47,6 +47,13 @@ namespace DDB.ProgDec.BL
                     entity.Id = dc.tblDegreeTypes.Any() ? dc.tblDegreeTypes.Max(s => s.Id) + 1 : 1;  // get last ID in table and add 1, or set Id to 1 because there are no Values in the table.
                     entity.Description = degreeType.Description;
 
+
+                    foreach(Program program in degreeType.Programs)
+                    {
+                        // Set the orderId on tblOrderItem for chkpt 4
+                        results += ProgramManager.Insert(program, rollback);
+                    }
+
                     // IMPORTANT - BACK FILL THE ID
                     degreeType.Id = entity.Id; //do this because the first Insert is id by reference
 
@@ -54,7 +61,7 @@ namespace DDB.ProgDec.BL
                     //Add entity to database
                     dc.tblDegreeTypes.Add(entity);
                     // commit the changes
-                    results = dc.SaveChanges();
+                    results += dc.SaveChanges();
 
                     //only for ut files
                     if (rollback) transaction.Rollback();
@@ -153,7 +160,8 @@ namespace DDB.ProgDec.BL
                         return new DegreeType
                         {
                             Id = entity.Id,
-                            Description = entity.Description
+                            Description = entity.Description,
+                            Programs = ProgramManager.Load(entity.Id)
                         };
                     }
                     else
@@ -189,7 +197,8 @@ namespace DDB.ProgDec.BL
                      .ForEach(degreeType => list.Add(new DegreeType
                      {
                          Id = degreeType.Id,
-                         Description = degreeType.Description
+                         Description = degreeType.Description,
+                         Programs = ProgramManager.Load(degreeType.Id)
 
                      }));
                 }
