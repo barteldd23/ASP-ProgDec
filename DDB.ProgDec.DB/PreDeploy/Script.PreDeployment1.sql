@@ -15,3 +15,4 @@ DROP TABLE IF exists tblDeclaration
 DROP TABLE IF EXISTS tblDegreeType
 DROP TABLE IF EXISTS tblProgram
 DROP TABLE IF EXISTS tblStudent
+DROP TABLE IF EXISTS tblUser

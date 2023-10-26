@@ -23,6 +23,8 @@ public partial class ProgDecEntities : DbContext
 
     public virtual DbSet<tblStudent> tblStudents { get; set; }
 
+    public virtual DbSet<tblUser> tblUsers { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=DDB.ProgDec.DB;Integrated Security=True");
@@ -31,7 +33,7 @@ public partial class ProgDecEntities : DbContext
     {
         modelBuilder.Entity<tblDeclaration>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblDecla__3214EC075D4FD1FA");
+            entity.HasKey(e => e.Id).HasName("PK__tblDecla__3214EC073A29FA45");
 
             entity.ToTable("tblDeclaration");
 
@@ -41,7 +43,7 @@ public partial class ProgDecEntities : DbContext
 
         modelBuilder.Entity<tblDegreeType>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblDegre__3214EC078AAF05D6");
+            entity.HasKey(e => e.Id).HasName("PK__tblDegre__3214EC0746D7DAD1");
 
             entity.ToTable("tblDegreeType");
 
@@ -53,7 +55,7 @@ public partial class ProgDecEntities : DbContext
 
         modelBuilder.Entity<tblProgram>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblProgr__3214EC0751297A24");
+            entity.HasKey(e => e.Id).HasName("PK__tblProgr__3214EC074092456B");
 
             entity.ToTable("tblProgram");
 
@@ -65,7 +67,7 @@ public partial class ProgDecEntities : DbContext
 
         modelBuilder.Entity<tblStudent>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__tblStude__3214EC07F7FD2079");
+            entity.HasKey(e => e.Id).HasName("PK__tblStude__3214EC0792DCD0B0");
 
             entity.ToTable("tblStudent");
 
@@ -78,6 +80,27 @@ public partial class ProgDecEntities : DbContext
                 .IsUnicode(false);
             entity.Property(e => e.StudentId)
                 .HasMaxLength(10)
+                .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<tblUser>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__tblUser__3214EC07EA79A6BA");
+
+            entity.ToTable("tblUser");
+
+            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.Property(e => e.FirstName)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.LastName)
+                .HasMaxLength(50)
+                .IsUnicode(false);
+            entity.Property(e => e.Password)
+                .HasMaxLength(28)
+                .IsUnicode(false);
+            entity.Property(e => e.UserId)
+                .HasMaxLength(50)
                 .IsUnicode(false);
         });
 

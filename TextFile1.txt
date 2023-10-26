@@ -8,5 +8,4 @@ Microsoft.VisualStudio.Web.CodeGeneration.Design
 
 build it by copy all this scaffold below, but all one line.
 
-Scaffold-DbContext "Server=(localdb)\MSSQLLocalDB;Database=DDB.ProgDec.DB;Integrated Security=True" 
-Microsoft.EntityFrameworkCore.SqlServer -Context ProgDecEntities -UseDatabaseNames -force
+Scaffold-DbContext "Server=(localdb)\MSSQLLocalDB;Database=DDB.ProgDec.DB;Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -Context ProgDecEntities -UseDatabaseNames -force

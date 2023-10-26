@@ -66,6 +66,7 @@
     <Build Include="Tables\tblProgram.sql" />
     <Build Include="Tables\tblDegreeType.sql" />
     <Build Include="Tables\tblDeclaration.sql" />
+    <Build Include="Tables\tblUser.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="local.publish.xml" />

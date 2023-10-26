@@ -6,6 +6,7 @@ namespace DDB.ProgDec.UI.Controllers
     {
         public IActionResult Index()
         {
+            ViewBag.Title = "List of Declarations";
             return View(DeclarationManager.Load());
         }
 
@@ -17,11 +18,14 @@ namespace DDB.ProgDec.UI.Controllers
 
         public IActionResult Details(int id)
         {
+            var item = DeclarationManager.LoadByID(id);
+            ViewBag.Title = "Details";
             return View(DeclarationManager.LoadByID(id));
         }
 
         public IActionResult Create()
         {
+            ViewBag.Title = "Create";
             return View();
         }
 
@@ -43,7 +47,9 @@ namespace DDB.ProgDec.UI.Controllers
 
         public IActionResult Edit(int id)
         {
-            return View(DeclarationManager.LoadByID(id));
+            var item = DeclarationManager.LoadByID(id);
+            ViewBag.Title = "Edit";
+            return View(item);
         }
 
         [HttpPost]
@@ -64,7 +70,9 @@ namespace DDB.ProgDec.UI.Controllers
 
         public IActionResult Delete(int id)
         {
-            return View(DeclarationManager.LoadByID(id));
+            var item = DeclarationManager.LoadByID(id);
+            ViewBag.Title = "Delete";
+            return View(item);
         }
 
         [HttpPost]

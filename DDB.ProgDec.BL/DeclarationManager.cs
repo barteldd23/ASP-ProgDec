@@ -160,7 +160,21 @@ namespace DDB.ProgDec.BL
 
                 using (ProgDecEntities dc = new ProgDecEntities())
                 {
-                    tblDeclaration entity = dc.tblDeclarations.FirstOrDefault(declaration => declaration.Id == id);
+                    var entity = (from d in dc.tblDeclarations
+                                  join s in dc.tblStudents on d.StudentId equals s.Id
+                                  join p in dc.tblPrograms on d.ProgramId equals p.Id
+                                  join dt in dc.tblDegreeTypes on p.DegreeTypeId equals dt.Id
+                                  where d.Id == id
+                                  select new
+                                  {
+                                        d.Id,
+                                        StudentName = s.FirstName + " " + s.LastName,
+                                        ProgramName = p.Description,
+                                        DegreeTypeName = dt.Description,
+                                        d.ProgramId,
+                                        d.ChangeDate,
+                                        d.StudentId
+                                  }).FirstOrDefault();
 
                     if (entity != null)
                     {
@@ -169,7 +183,10 @@ namespace DDB.ProgDec.BL
                             Id = entity.Id,
                             ProgramId = entity.ProgramId,
                             StudentId = entity.StudentId,
-                            ChangeDate = entity.ChangeDate
+                            ChangeDate = entity.ChangeDate,
+                            StudentName = entity.StudentName,
+                            ProgramName = entity.ProgramName,
+                            DegreeTypeName = entity.DegreeTypeName
                         };
                     }
                     else
@@ -210,6 +227,7 @@ namespace DDB.ProgDec.BL
                          d.ChangeDate,
                          d.StudentId
                      })
+                     .Distinct()
                      .ToList()
                      .ForEach(declaration => list.Add(new Declaration
                      {
