@@ -9,3 +9,8 @@ Microsoft.VisualStudio.Web.CodeGeneration.Design
 build it by copy all this scaffold below, but all one line.
 
 Scaffold-DbContext "Server=(localdb)\MSSQLLocalDB;Database=DDB.ProgDec.DB;Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -Context ProgDecEntities -UseDatabaseNames -force
+
+ json change catalog to proper project
+"DVDCentralConnection": 
+"Data Source=server-21295-300089145.database.windows.net;Initial Catalog=progdecdb;User ID=300089145db;Password=Test123!;Connect Timeout=30;Encrypt=True;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False"
+
