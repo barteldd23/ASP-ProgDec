@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DDB.ProgDec.UI.Models;
+using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DDB.ProgDec.UI.Controllers
 {
@@ -19,8 +21,14 @@ namespace DDB.ProgDec.UI.Controllers
 
         public IActionResult Create()
         {
+
             ViewBag.Title = "Create a Progarm";
-            return View();
+            if (Authenticate.IsAuthenticated(HttpContext))
+                return View();
+            else
+                return RedirectToAction("Login", "User", new {returnUrl = UriHelper.GetDisplayUrl(HttpContext.Request)});
+            
+            
         }
 
         [HttpPost]
