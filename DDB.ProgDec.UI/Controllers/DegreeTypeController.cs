@@ -6,16 +6,20 @@ namespace DDB.ProgDec.UI.Controllers
     {
         public IActionResult Index()
         {
+            ViewBag.Title = "List of Degree Types";
             return View(DegreeTypeManager.Load());
         }
 
         public IActionResult Details(int id)
         {
+            var item = DegreeTypeManager.LoadByID(id);
+            ViewBag.Title = "Details for " + item.Description;
             return View(DegreeTypeManager.LoadByID(id));
         }
 
         public IActionResult Create()
         {
+            ViewBag.Title = "Create a Degree Type";
             return View();
         }
 
@@ -28,15 +32,18 @@ namespace DDB.ProgDec.UI.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                ViewBag.Title = "Create a Degree Type";
+                ViewBag.Error = ex.Message;
+                return View(degreeType);
             }
         }
 
         public IActionResult Edit(int id)
         {
+            var item = DegreeTypeManager.LoadByID(id);
+            ViewBag.Title = "Edit " + item.Description;
             return View(DegreeTypeManager.LoadByID(id));
         }
 
@@ -51,6 +58,7 @@ namespace DDB.ProgDec.UI.Controllers
             }
             catch (Exception ex)
             {
+                ViewBag.Title = "Edit " + degreeType.Description;
                 ViewBag.Error = ex.Message;
                 return View(degreeType);
             }
@@ -58,6 +66,8 @@ namespace DDB.ProgDec.UI.Controllers
 
         public IActionResult Delete(int id)
         {
+            var item = DegreeTypeManager.LoadByID(id);
+            ViewBag.Title = "Delete " + item.Description;
             return View(DegreeTypeManager.LoadByID(id));
         }
 
@@ -72,6 +82,7 @@ namespace DDB.ProgDec.UI.Controllers
             }
             catch (Exception ex)
             {
+                ViewBag.Title = "Delete " + degreeType.Description;
                 ViewBag.Error = ex.Message;
                 return View(degreeType);
             }
