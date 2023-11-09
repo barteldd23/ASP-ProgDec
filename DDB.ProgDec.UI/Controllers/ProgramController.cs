@@ -1,4 +1,5 @@
 ﻿using DDB.ProgDec.UI.Models;
+using DDB.ProgDec.UI.ViewModels;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,8 +24,14 @@ namespace DDB.ProgDec.UI.Controllers
         {
 
             ViewBag.Title = "Create a Progarm";
+
+            // allow access to multiple models in the view :
+            ProgramVM programVM = new ProgramVM();
+            programVM.Program = new BL.Models.Program();
+            programVM.DegreeTypes = DegreeTypeManager.Load();
+
             if (Authenticate.IsAuthenticated(HttpContext))
-                return View();
+                return View(programVM);
             else
                 return RedirectToAction("Login", "User", new {returnUrl = UriHelper.GetDisplayUrl(HttpContext.Request)});
             
@@ -32,11 +39,11 @@ namespace DDB.ProgDec.UI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(BL.Models.Program program, bool rollback = false)
+        public IActionResult Create(ProgramVM programVM, bool rollback = false)
         {
             try
             {
-                int result = ProgramManager.Insert(program, rollback);
+                int result = ProgramManager.Insert(programVM.Program, rollback);
 
                 return RedirectToAction(nameof(Index));
             }
