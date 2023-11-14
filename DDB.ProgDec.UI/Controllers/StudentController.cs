@@ -6,16 +6,20 @@ namespace DDB.ProgDec.UI.Controllers
     {
         public IActionResult Index()
         {
+            ViewBag.Title = "List of Advisors";
             return View(StudentManager.Load());
         }
 
         public IActionResult Details(int id)
         {
-            return View(StudentManager.LoadByID(id));
+            var item = StudentManager.LoadByID(id);
+            ViewBag.Title = "Details for " + item.FullName;
+            return View(item);
         }
 
         public IActionResult Create()
         {
+            ViewBag.Title = "Create a Student";
             return View();
         }
 
@@ -28,16 +32,19 @@ namespace DDB.ProgDec.UI.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                ViewBag.Title = "Create a Student";
+                ViewBag.Error = ex.Message;
                 throw;
             }
         }
 
         public IActionResult Edit(int id)
         {
-            return View(StudentManager.LoadByID(id));
+            var item = StudentManager.LoadByID(id);
+            ViewBag.Title = "Details for " + item.FullName;
+            return View(item);
         }
 
         [HttpPost]
@@ -51,6 +58,7 @@ namespace DDB.ProgDec.UI.Controllers
             }
             catch (Exception ex)
             {
+                ViewBag.Title = "Details for " + student.FullName;
                 ViewBag.Error = ex.Message;
                 return View(student);
             }
@@ -58,7 +66,9 @@ namespace DDB.ProgDec.UI.Controllers
 
         public IActionResult Delete(int id)
         {
-            return View(StudentManager.LoadByID(id));
+            var item = StudentManager.LoadByID(id);
+            ViewBag.Title = "Are you sure you want to Delete " + item.FullName;
+            return View(item);
         }
 
         [HttpPost]
@@ -72,6 +82,7 @@ namespace DDB.ProgDec.UI.Controllers
             }
             catch (Exception ex)
             {
+                ViewBag.Title = "Are you sure you want to Delete " + student.FullName;
                 ViewBag.Error = ex.Message;
                 return View(student);
             }
