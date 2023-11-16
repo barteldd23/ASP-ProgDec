@@ -37,6 +37,7 @@ namespace DDB.ProgDec.PL.Test
             tblProgram entity = new tblProgram();
             entity.DegreeTypeId = 2;
             entity.Description = "Basket Weaving";
+            entity.ImagePath = "";
             entity.Id = -99;
 
             //Add entity to database

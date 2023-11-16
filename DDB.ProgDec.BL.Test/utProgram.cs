@@ -13,7 +13,7 @@ namespace DDB.ProgDec.BL.Test
         public void InsertTest1()
         {
             int id = 0;
-            int results = ProgramManager.Insert("Test", 2, ref id, true);
+            int results = ProgramManager.Insert("Test", 2,"", ref id, true);
             Assert.AreEqual(1, results);
         }
 
@@ -25,7 +25,8 @@ namespace DDB.ProgDec.BL.Test
                 Program program = new Program
                 {
                     Description = "test",
-                    DegreeTypeId = 2
+                    DegreeTypeId = 2,
+                    ImagePath = "test.png"
                 };
                 int results = ProgramManager.Insert(program, true);
                 Assert.AreEqual(1, results);

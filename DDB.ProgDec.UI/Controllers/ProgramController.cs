@@ -56,24 +56,32 @@ namespace DDB.ProgDec.UI.Controllers
 
         public IActionResult Edit(int id)
         {
-            var item = ProgramManager.LoadByID(id);
-            ViewBag.Title = "Edit " + item.Description;
-            return View(item);
+
+            // allow access to multiple models in the view :
+            ProgramVM programVM = new ProgramVM();
+            programVM.Program = ProgramManager.LoadByID(id);
+            programVM.DegreeTypes = DegreeTypeManager.Load();
+
+            ViewBag.Title = "Edit " + programVM.Program.Description;
+            if (Authenticate.IsAuthenticated(HttpContext))
+                return View(programVM);
+            else
+                return RedirectToAction("Login", "User", new { returnUrl = UriHelper.GetDisplayUrl(HttpContext.Request) });
         }
 
         [HttpPost]
-        public IActionResult Edit(BL.Models.Program program, bool rollback = false)
+        public IActionResult Edit(ProgramVM programVM, bool rollback = false)
         {
             try
             {
-                int result = ProgramManager.Update(program, rollback);
+                int result = ProgramManager.Update(programVM.Program, rollback);
 
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
-                return View(program);
+                return View(programVM);
             }
         }
 

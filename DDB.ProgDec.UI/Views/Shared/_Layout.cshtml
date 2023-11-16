@@ -69,6 +69,16 @@
                 </div>
             </div>
 
+
+
+            <div id="overlay" onclick="off()">
+                <div id="imageproplarge">
+                    <img class="imageproplarge" id="output" />
+                </div>
+                
+            </div>
+
+
             <div class="col-md-9 main body-content rounded-top">
                 <div class="header rounded-top">
                     <h4>@ViewBag.Title</h4>
@@ -95,3 +105,16 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+<script type="text/javascript">
+    function off() {
+        console.log('off');
+        document.getElementById("overlay").style.display = "none";
+    }
+
+    function on(picture){
+        console.log('on');
+        document.getElementById("overlay").style.display = "block";
+        document.getElementById("output").src = picture;
+    }
+</script>

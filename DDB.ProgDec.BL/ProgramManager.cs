@@ -14,6 +14,7 @@ namespace DDB.ProgDec.BL
     {
         public static int Insert(string description,
                                  int degreeType, 
+                                 string imagePath,
                                  ref int id,
                                  bool rollback = false) // need this optional parameter for the testing. send True only from ut files.
                                                         // Because if false, then its the actual program and we want to keep the data in DB.
@@ -23,7 +24,9 @@ namespace DDB.ProgDec.BL
                 Program program = new Program
                 {
                     Description = description,
-                    DegreeTypeId = degreeType
+                    DegreeTypeId = degreeType,
+                    ImagePath = imagePath,
+
                 };
 
                 int results = Insert(program, rollback); // objects are always passed by reference, so 'program' can get changed in the next method.
@@ -55,6 +58,8 @@ namespace DDB.ProgDec.BL
                     entity.Id = dc.tblPrograms.Any() ? dc.tblPrograms.Max(s => s.Id) + 1 : 1;  // get last ID in table and add 1, or set Id to 1 because there are no Values in the table.
                     entity.Description = program.Description;
                     entity.DegreeTypeId = program.DegreeTypeId;
+                    entity.ImagePath = program.ImagePath;
+
 
 
                     // IMPORTANT - BACK FILL THE ID
@@ -96,6 +101,7 @@ namespace DDB.ProgDec.BL
                     {
                         entity.Description = program.Description;
                         entity.DegreeTypeId = program.DegreeTypeId;
+                        entity.ImagePath = program.ImagePath;
                         results = dc.SaveChanges();
                     }
                     else
@@ -165,7 +171,8 @@ namespace DDB.ProgDec.BL
                                      s.Id,
                                      s.Description,
                                      s.DegreeTypeId,
-                                     DegreeTypeName = dt.Description
+                                     DegreeTypeName = dt.Description,
+                                     s.ImagePath
                                  })
                                  .FirstOrDefault();
 
@@ -176,7 +183,8 @@ namespace DDB.ProgDec.BL
                             Id = entity.Id,
                             Description = entity.Description,
                             DegreeTypeId = entity.DegreeTypeId,
-                            DegreeTypeName = entity.DegreeTypeName
+                            DegreeTypeName = entity.DegreeTypeName,
+                            ImagePath = entity.ImagePath
                         };
                     }
                     else
@@ -210,7 +218,8 @@ namespace DDB.ProgDec.BL
                          s.Id,
                          s.Description,
                          s.DegreeTypeId,
-                         DegreeTypeName = dt.Description
+                         DegreeTypeName = dt.Description,
+                         s.ImagePath
                      })
                      .ToList()
                      .ForEach(program => list.Add(new Program
@@ -218,7 +227,8 @@ namespace DDB.ProgDec.BL
                          Id = program.Id,
                          Description = program.Description,
                          DegreeTypeId = program.DegreeTypeId,
-                         DegreeTypeName = program.DegreeTypeName
+                         DegreeTypeName = program.DegreeTypeName,
+                         ImagePath = program.ImagePath
 
                      }));
                 }
