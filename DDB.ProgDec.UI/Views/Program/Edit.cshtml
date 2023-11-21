@@ -9,7 +9,8 @@
 
 <div class="row m-2">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <!-- NEED TO UPDATE FORM METHOD AND ENCTYPE-->
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <input hidden asp-for="Program.Id" class="form-control" />
@@ -29,17 +30,18 @@
 
             <div class="form-group">
                 <label asp-for="Program.ImagePath" class="control-label"></label>
-                <img class="imagepropmedium"
+                <img class="imagepropmedium m-2"
                      alt="@Model.Program.Description"
                      id="programimage"
                      onclick="on('/images/@Model.Program.ImagePath')"
                      src="~/images/@Model.Program.ImagePath" />
-                <input asp-for="Program.ImagePath" class="form-control" />
+                <input asp-for="Program.ImagePath" class="form-control m-2" />
+                <input type="file" name="File" id="File" accept="image/" onchange="loadFile(event)" class="m-2" />
                 <span asp-validation-for="Program.ImagePath" class="text-danger"></span>
             </div>
 
             <div class="form-group mt-2">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Submit" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -52,3 +54,10 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+<script>
+    var loadFile = function (event) {
+        var output = document.getElementById('programimage');
+        output.src = URL.createObjectURL(event.target.files[0]);
+    }
+</script>

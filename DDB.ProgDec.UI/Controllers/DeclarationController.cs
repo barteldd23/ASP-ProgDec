@@ -13,6 +13,8 @@ namespace DDB.ProgDec.UI.Controllers
         // filter the declaration by programId
         public IActionResult Browse(int id)
         {
+            var results = ProgramManager.LoadByID(id);
+            ViewBag.Title = "List of " + results.Description + " Declarations";
             return View(nameof(Index),DeclarationManager.Load(id));
         }
 
