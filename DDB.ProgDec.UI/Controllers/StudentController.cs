@@ -87,7 +87,7 @@ namespace DDB.ProgDec.UI.Controllers
         {
             if (HttpContext.Session.GetObject<IEnumerable<int>>("advisorids") != null)
             {
-                return (HttpContext.Session.GetObject<IEnumerable<int>>("advisorids");
+                return (HttpContext.Session.GetObject<IEnumerable<int>>("advisorids"));
             }
             else
             {
