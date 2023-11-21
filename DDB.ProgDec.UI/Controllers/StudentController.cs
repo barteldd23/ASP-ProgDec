@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DDB.ProgDec.PL;
+using DDB.ProgDec.UI.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DDB.ProgDec.UI.Controllers
 {
@@ -42,25 +44,54 @@ namespace DDB.ProgDec.UI.Controllers
 
         public IActionResult Edit(int id)
         {
-            var item = StudentManager.LoadByID(id);
-            ViewBag.Title = "Details for " + item.FullName;
-            return View(item);
+            StudentVM studentVM = new StudentVM(id);
+            ViewBag.Title = "Details for " + studentVM.Student.FullName;
+            HttpContext.Session.SetObject("advisorids", studentVM.AdvisorIds);
+            return View(studentVM);
         }
 
         [HttpPost]
-        public IActionResult Edit(Student student, bool rollback = false)
+        public IActionResult Edit(int id, StudentVM studentVM, bool rollback = false)
         {
             try
             {
-                int result = StudentManager.Update(student, rollback);
+
+                IEnumerable<int> newAdvisorIds = new List<int>();
+                if(studentVM.AdvisorIds != null)
+                {
+                    newAdvisorIds = studentVM.AdvisorIds;
+                }
+
+                IEnumerable<int> oldAdvisorIds = new List<int>();
+                oldAdvisorIds = GetObject(); // function we made below
+
+                IEnumerable<int> deletes = oldAdvisorIds.Except(newAdvisorIds);
+                IEnumerable<int> adds = newAdvisorIds.Except(oldAdvisorIds);
+
+                deletes.ToList().ForEach(d => StudentAdvisorManager.Delete(id, d));
+                adds.ToList().ForEach(a => StudentAdvisorManager.Insert(id, a));
+
+                int result = StudentManager.Update(studentVM.Student, rollback);
 
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
-                ViewBag.Title = "Details for " + student.FullName;
+                ViewBag.Title = "Details for " + studentVM.Student.FullName;
                 ViewBag.Error = ex.Message;
-                return View(student);
+                return View(studentVM);
+            }
+        }
+
+        private IEnumerable<int> GetObject()
+        {
+            if (HttpContext.Session.GetObject<IEnumerable<int>>("advisorids") != null)
+            {
+                return (HttpContext.Session.GetObject<IEnumerable<int>>("advisorids");
+            }
+            else
+            {
+                return null;
             }
         }
 
