@@ -22,7 +22,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDB.ProgDec.BL.Test", "DDB.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDB.Bands.UI", "DDB.Bands.UI\DDB.Bands.UI.csproj", "{CD1A7F60-C38C-4BA2-832C-0A4AED695EA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDB.ProgDec.UI", "DDB.ProgDec.UI\DDB.ProgDec.UI.csproj", "{FC88B1C4-FC03-496E-BC2B-51416C8D4F0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDB.ProgDec.UI", "DDB.ProgDec.UI\DDB.ProgDec.UI.csproj", "{FC88B1C4-FC03-496E-BC2B-51416C8D4F0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDB.ProgDec.API", "DDB.ProgDec.API\DDB.ProgDec.API.csproj", "{88876618-BD55-4753-A0A2-0C243F676A60}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -64,6 +66,10 @@ Global
 		{FC88B1C4-FC03-496E-BC2B-51416C8D4F0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC88B1C4-FC03-496E-BC2B-51416C8D4F0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC88B1C4-FC03-496E-BC2B-51416C8D4F0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88876618-BD55-4753-A0A2-0C243F676A60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88876618-BD55-4753-A0A2-0C243F676A60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88876618-BD55-4753-A0A2-0C243F676A60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88876618-BD55-4753-A0A2-0C243F676A60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
