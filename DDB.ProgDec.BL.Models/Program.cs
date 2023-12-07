@@ -14,7 +14,7 @@ namespace DDB.ProgDec.BL.Models
         public string? Description { get; set; }
 
         [DisplayName("Degree Name")]
-        public string DegreeTypeName { get; set; }
+        public string DegreeTypeName { get; set; } = "";
 
         [DisplayName("Image")]
         public string ImagePath { get; set; }
